@@ -14,12 +14,9 @@ import (
 	"strings"
 )
 
-
-
-
-type User struct{
-	Name string `json:"name"`
-	Email string `json:"email"`
+type User struct {
+	Name     string   `json:"name"`
+	Email    string   `json:"email"`
 	Browsers []string `json:"browsers"`
 }
 
@@ -48,17 +45,10 @@ func FastSearch(out io.Writer) {
 			continue
 		}
 
-		// with easyjson
 		err = user.UnmarshalJSON(line)
 		if err != nil {
 			panic(err)
 		}
-
-		// without easyjson
-		//err = json.Unmarshal(line, &user)
-		//if err != nil {
-		//	panic(err)
-		//}
 
 		isAndroid := false
 		isMSIE := false
@@ -87,9 +77,6 @@ func FastSearch(out io.Writer) {
 
 	fmt.Fprintln(out, "\nTotal unique browsers", len(seenBrowsers))
 }
-
-
-
 
 // suppress unused package warning
 var (
